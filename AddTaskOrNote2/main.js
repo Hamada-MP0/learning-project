@@ -11,6 +11,11 @@ let tasksComplete=document.querySelector(".tasks-completed span")
 
 window.onload=()=>{
     theinput.focus();
+   
+    if(document.querySelectorAll('.tasks-content .task-box').length==1)
+        {
+            createnewtasks()
+        }
     let noteTasksMsg=document.querySelector(".no-tasks-message")
     
     if(document.body.contains(document.querySelector(".no-tasks-message")))
@@ -74,12 +79,18 @@ document.addEventListener('click',(e)=>{
     if(e.target.className=='delete')
     {
         let message = e.target.parentElement.firstChild.textContent.trim();
-        console.log(message)
+        let delim = message.indexOf(">");
 
+        if (delim !== -1) {
+            // حذف من أول '>' إلى النهاية
+            message = message.substring(0, delim);
+        }
+   console.log(message)
         localStorage.removeItem(message)
+        
     e.target.parentNode.remove();/*////////////////////////////*/
     
-    if(tasksContainer.childElementCount==0)
+    if(document.querySelectorAll('.tasks-content .task-box').length==0)
     {
         createnewtasks()
     }
@@ -95,11 +106,11 @@ document.addEventListener('click',(e)=>{
                         for(let i=0;i<localStorage.length;i++)
                         { 
                             const message = span.firstChild.textContent;
-                        console.log(message+localStorage .key(i))
+                    
                         if(localStorage .key(i)==message)
                         {
-                            console.log(message+localStorage .key(i))
-                            localStorage.setItem(message, message+ " > finished");
+                           
+                            localStorage.setItem(message, message+ ">  (finished)");
                         }
                     } }
                 });
