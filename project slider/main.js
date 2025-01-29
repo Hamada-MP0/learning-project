@@ -73,7 +73,7 @@ function slidePrev()
 
 function theChecker()
 {
-    slideNumber.textContent= 'slide #' +(currentSlideIndex) + 'of ' + (slidesCount);
+    slideNumber.textContent= 'slide #' +(currentSlideIndex+1) + 'of ' + (slidesCount);
     removeActive();
 
     sliderItem[currentSlideIndex].classList.add('active');
